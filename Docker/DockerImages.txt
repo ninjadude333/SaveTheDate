@@ -1,0 +1,4 @@
+Nginx
+ElasticSearch
+Grafana
+centos7 ?
