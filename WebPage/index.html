@@ -17,13 +17,16 @@
                     </div>
                     <nav>
                       <ul>
-                        <li class="current"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
+                        <li id="home_bar" class="current">Home</li>
+                        <li id="about_bar"><a href="about.html">About</a></li>
                         <li><a href="services.html">Services</a></li>
                       </ul>
                     </nav>
                   </div>
+        <div id="animation" style="background-color: #00AA00; height:0px; transition: 1s ease-out;">
+        </div>
     </header>
+
     <section id="showcase">
             <div class="container">
                     <h1>Affordable Web Design For Small And Medium-sized Companies</h1>
@@ -61,5 +64,12 @@
     <footer>
       <p>1-2-3 Web Design, Copyright &copy; 2017</p>
     </footer>
+	<script>
+	    var x = document.getElementById("home_bar")
+        x.addEventListener("click", function(){
+            var anim = document.getElementById("animation")
+            anim.style.height="100px";
+        })
+	</script>
   </body>
 </html>
