@@ -17,7 +17,7 @@
                     </div>
                     <nav>
                       <ul>
-                        <li id="home_bar" class="current">Home</li>
+                        <li id="home_bar"><a class="current">Home</a></li>
                         <li id="about_bar"><a href="about.html">About</a></li>
                         <li><a href="services.html">Services</a></li>
                       </ul>
@@ -68,7 +68,11 @@
 	    var x = document.getElementById("home_bar")
         x.addEventListener("click", function(){
             var anim = document.getElementById("animation")
-            anim.style.height="100px";
+            if (anim.style.height=="0px")
+              {anim.style.height="50px";}
+            else
+              {anim.style.height="0px";}
+            
         })
 	</script>
   </body>
