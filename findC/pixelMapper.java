@@ -30,7 +30,7 @@ public class pixelMapper
 
         try 
         {
-          img = ImageIO.read(new File("simplePixelContour.jpg"));
+          img = ImageIO.read(new File("contourSimple.jpg"));
           System.out.println("image width:" + img.getWidth());
           System.out.println("image height:" + img.getHeight());
           System.out.println("image type:" + img.getType());
