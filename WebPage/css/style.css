@@ -37,6 +37,9 @@ header{
   }
   header #branding h1{
     margin: 0;
+    font-size: 48px;
+    text-align: center;
+    vertical-align: bottom;
   } 
   header nav{
     float: right;
