@@ -30,7 +30,7 @@ public class pixelMapper
 
         try 
         {
-          img = ImageIO.read(new File("contourSimple.jpg"));
+          img = ImageIO.read(new File("simplePixelContour.jpg"));
           System.out.println("image width:" + img.getWidth());
           System.out.println("image height:" + img.getHeight());
           System.out.println("image type:" + img.getType());
@@ -47,10 +47,7 @@ public class pixelMapper
                         {
                             System.out.println("Point Traced: " + j + ":" + i + " ---- " + img.getRGB(j, i));
                             Color myColor = new Color(img.getRGB(j, i),false);
-                            System.out.println("RGBa Red Value : " + myColor.getRed());
-                            System.out.println("RGBa Green Value : " + myColor.getGreen());
-                            System.out.println("RGBa Blue Value : " + myColor.getBlue());
-                            System.out.println("RGBa Alpha Value : " + myColor.getAlpha());
+                            System.out.println("RGBa Values : " + myColor.getRed() + "," + myColor.getGreen() + "," + myColor.getBlue());
                         }    
                 }
             }
