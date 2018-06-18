@@ -70,89 +70,101 @@ public class findC
         String direction = "up";
         Color currentPixelColor;
 
-        while ( !fullCircle && currentpointX + 1 != width && currentpointY + 1 != height )
+        while ( !fullCircle )
         {
-            if (direction.equals("up") && ((currentpointY + 1) <= height))
-            {
-                currentpointY++;
-                System.out.println("direction = " + direction + " currentpointY = " + currentpointY + " height = " + height);
-                currentPixelColor = new Color(img.getRGB(currentpointX, currentpointY));
-                System.out.println("RGBa Red Value : " + currentPixelColor.getRed());
-                System.out.println("RGBa Green Value : " + currentPixelColor.getGreen());
-                System.out.println("RGBa Blue Value : " + currentPixelColor.getBlue());
-                System.out.println("RGBa Alpha Value : " + currentPixelColor.getAlpha());
+            System.out.println("direction = " + direction + " currentpointX = " + currentpointX + " currentpointY = " + currentpointY);
+            currentPixelColor = new Color(img.getRGB(currentpointX, currentpointY));
+            System.out.println("RGBa Red Value : " + currentPixelColor.getRed());
+            System.out.println("RGBa Green Value : " + currentPixelColor.getGreen());
+            System.out.println("RGBa Blue Value : " + currentPixelColor.getBlue());
+            System.out.println("RGBa Alpha Value : " + currentPixelColor.getAlpha());
 
-                if (calcDistance(currentPixelColor, contourColorType) < detectionThreshold)
+            if (calcDistance(currentPixelColor, contourColorType) < detectionThreshold)
+                {
+
+                    if (currentpointX == 85 && currentpointY == 22)
                     {
-                        System.out.println(calcDistance(currentPixelColor, contourColorType));
-                        System.out.println("adding coordinate : " + currentpointX + ":" + currentpointY);
-                        contourPoints.add(new Coords(currentpointX, currentpointY, direction));
+                        System.out.println("fff");
                     }
-                else
+
+                    System.out.println(calcDistance(currentPixelColor, contourColorType));
+                    System.out.println("adding coordinate : " + currentpointX + ":" + currentpointY);
+                    contourPoints.add(new Coords(currentpointX, currentpointY, direction));
+
+                    switch(direction)
                     {
-                        System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
-                        System.out.println("setting Direction to RIGHT");
-                        direction = "right";
-                        junctionPoints.add(new Coords(currentpointX, currentpointY, direction));
-                    }
-            } 
-            else if (direction.equals("right") && ((currentpointX + 1) <= width))
-                    {
-                        currentpointX++;
-                        System.out.println("direction = " + direction + " currentpointX = " + currentpointX + " width = " + width);
-                        currentPixelColor = new Color(img.getRGB(currentpointX,currentpointY));
-                        if (calcDistance(currentPixelColor, contourColorType) < detectionThreshold)
+                        case "up":  
+                        if ((currentpointY + 1) <= height)
                         {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
-                            System.out.println("adding coordinate : " + currentpointX + ":" + currentpointY);
-                            contourPoints.add(new Coords(currentpointX, currentpointY, direction));
+                            currentpointY++;
+                            break;
                         }
-                        else
+                        case "right":  
+                        if ((currentpointX + 1) <= width)
                         {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
+                            currentpointX++;
+                            break;
+                        }
+                        case "down":  
+                        if ((currentpointY - 1) >= 0)
+                        {
+                            currentpointY--;
+                            break;
+                        }
+                        case "left":  
+                        if ((currentpointX - 1) >= 0)
+                        {
+                            currentpointX--;
+                            break;
+                        }
+                    }
+                }
+            else
+            {   
+               switch(direction)
+               {
+                case "up":  
+                        if ((currentpointX + 1) <= width)
+                        {
+                            System.out.println("setting Direction to RIGHT");
+                            direction = "right";
+                            junctionPoints.add(new Coords(currentpointX, currentpointY, direction));
+                            currentpointY--;
+                            currentpointX++;
+                            break;
+                        }
+                case "right":  
+                        if ((currentpointY - 1) >= 0)
+                        {
                             System.out.println("setting Direction to DOWN");
                             direction = "down";
                             junctionPoints.add(new Coords(currentpointX, currentpointY, direction));
+                            currentpointX--;
+                            currentpointY--;
+                            break;
                         }
-                    }
-                    else if (direction.equals("down") && ((currentpointY - 1) >= 0))
-                    {
-                        currentpointY--;
-                        System.out.println("direction = " + direction + " currentpointY = " + currentpointY + " height = " + height);
-                        currentPixelColor = new Color(img.getRGB(currentpointX,currentpointY));
-                        if (calcDistance(currentPixelColor, contourColorType) < detectionThreshold)
+                case "down":  
+                        if ((currentpointX - 1) >= 0)
                         {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
-                            System.out.println("adding coordinate : " + currentpointX + ":" + currentpointY);
-                            contourPoints.add(new Coords(currentpointX, currentpointY, direction));
-                        }
-                        else
-                        {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
                             System.out.println("setting Direction to LEFT");
                             direction = "left";
                             junctionPoints.add(new Coords(currentpointX, currentpointY, direction));
+                            currentpointY++;
+                            currentpointX--;
+                            break;
                         }
-                    }
-                    else if (direction.equals("left") && ((currentpointX - 1) >= 0))
-                    {
-                        currentpointX--;
-                        System.out.println("direction = " + direction + " currentpointX = " + currentpointX + " width = " + width);
-                        currentPixelColor = new Color(img.getRGB(currentpointX,currentpointY));
-                        if (calcDistance(currentPixelColor, contourColorType) < detectionThreshold)
+                case "left":  
+                        if ((currentpointY + 1) <= height)
                         {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
-                            System.out.println("adding coordinate : " + currentpointX + ":" + currentpointY);
-                            contourPoints.add(new Coords(currentpointX, currentpointY, direction));
-                        }
-                        else
-                        {
-                            System.out.println("calcDistance = " + calcDistance(currentPixelColor, contourColorType));
                             System.out.println("setting Direction to UP");
                             direction = "up";
                             junctionPoints.add(new Coords(currentpointX, currentpointY, direction));
+                            currentpointX++;
+                            currentpointY++;
+                            break;
                         }
-                    }
+               } 
+            }
 
             if (currentpointX == startX && currentpointY == startY)
             {
@@ -168,10 +180,7 @@ public class findC
             System.out.println(point.x + ":" + point.y + " -- changed direction to: " + point.direction);
         }
 
-
-
         System.out.println("\ncontour Tracing is done!");
-
     }
         catch (IOException e) 
         {
