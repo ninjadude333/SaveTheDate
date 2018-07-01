@@ -31,7 +31,7 @@ public class findC
    {
     BufferedImage img = null;
     //int contourColor = -13364318;
-    double detectionThreshold = 10.0;
+    double detectionThreshold = 6.0;
     Color contourColorType = new Color(-13364318,false);
     int startX = 0;
     int startY = 0;
